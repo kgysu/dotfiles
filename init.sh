@@ -35,11 +35,14 @@ fi
 echo "Detected shell: $sh_type"
 
 case "$sh_type" in
-    bash)
+    /bin/bash)
         exec bash "$DOTDIR/bash/install.bash" "$@"
         ;;
-    zsh)
+    /bin/zsh)
           exec zsh "$DORDIR/zsh/install.zsh" "$@"
+        ;;
+    /bin/sh)
+        exec bash "$DOTDIR/bash/install.bash" "$@"
         ;;
     *)
         echo "Unsupported shell: $sh_type" >&2

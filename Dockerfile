@@ -23,4 +23,3 @@ RUN chmod +x init.sh
 
 USER $USERNAME
 
-

@@ -6,7 +6,7 @@ Personal machine configuration.
 init:
 
 ```bash
-sh https://github.com/kgysu/dotfiles/init.sh
+bash <(curl -fsSL https://raw.githubusercontent.com/kgysu/dotfiles/main/init.sh)
 ```
 
 
