@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# exit on error
+set -e 
+
 echo "Initializing machine.."
 
 dirs=(
@@ -17,7 +20,7 @@ done
 
 
 echo "cloning repo.."
-git clone https://github.com/kgysu/dotfiles ~/.dotfiles
+#git clone https://github.com/kgysu/dotfiles ~/.dotfiles
 
 
 DOTDIR="$HOME/.dotfiles"

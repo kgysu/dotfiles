@@ -2,7 +2,7 @@ FROM debian:12
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update && apt install -y git curl wget sudo
+RUN apt update && apt install -y git curl wget sudo fd-find fzf nodejs golang-go neovim
 
 ARG USERNAME=appuser
 ARG USER_UID=1000
@@ -17,8 +17,13 @@ WORKDIR /home/$USERNAME
 
 
 # add scripts for testing
-ADD init.sh .
-RUN chmod +x init.sh
+RUN mkdir .dotfiles
+ADD . .dotfiles
+RUN chown appuser:appuser .dotfiles
+
+RUN mkdir -p .config/nvim
+RUN touch .config/nvim/test.md
+RUN chown -R appuser:appuser .config
 
 
 USER $USERNAME

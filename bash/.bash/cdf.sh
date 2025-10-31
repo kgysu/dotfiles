@@ -1,7 +1,7 @@
 # CD-Function
 
 # fuzzy cd using fd + fzf
-cdf() {
+fzd() {
   local search_dir dir
   search_dir="${1:-.}"
   [[ "$search_dir" == "~" ]] && search_dir="$HOME"
@@ -11,7 +11,6 @@ cdf() {
     return 1
   fi
 
-  #| fzf --height 50% --reverse --border --prompt="cd> " \
   dir="$(fd --hidden --type d --follow --exclude .git --exclude node_modules . "$search_dir" \
     | fzf --border --prompt="cd> " \
           --preview 'ls -la --color=always {}' \
@@ -22,6 +21,6 @@ cdf() {
 
 
 # bind Control-f key stroke
-bind -x '"\C-f": "cdf ~"'
+bind -x '"\C-f": "fzd ~"'
 
 
