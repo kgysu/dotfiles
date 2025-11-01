@@ -2,7 +2,7 @@ FROM debian:12
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update && apt install -y git curl wget sudo fd-find fzf nodejs golang-go neovim
+RUN apt update && apt install -y git curl wget sudo fd-find fzf nodejs golang-go neovim pass wl-clipboard
 
 ARG USERNAME=appuser
 ARG USER_UID=1000

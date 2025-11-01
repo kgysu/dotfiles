@@ -13,6 +13,8 @@ dirs=(
   "$HOME/.local/bin"
   "$HOME/go/bin"
   "$HOME/go/src"
+  "$HOME/.keys/pass"
+  "$HOME/.keys/github"
 )
 
 for dir in "${dirs[@]}"; do
