@@ -19,12 +19,15 @@ WORKDIR /home/$USERNAME
 # add scripts for testing
 RUN mkdir .dotfiles
 ADD . .dotfiles
-RUN chown appuser:appuser .dotfiles
+RUN chown -R appuser:appuser .dotfiles
 
 RUN mkdir -p .config/nvim
 RUN touch .config/nvim/test.md
 RUN chown -R appuser:appuser .config
 
+RUN mkdir -p .config/git
+RUN touch .config/git/test.md
+RUN chown -R appuser:appuser .config
 
 USER $USERNAME
 

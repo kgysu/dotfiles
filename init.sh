@@ -9,6 +9,10 @@ dirs=(
   "$HOME/work/src"
   "$HOME/work/repos"
   "$HOME/work/tmp"
+  "$HOME/bin"
+  "$HOME/.local/bin"
+  "$HOME/go/bin"
+  "$HOME/go/src"
 )
 
 for dir in "${dirs[@]}"; do

@@ -1,0 +1,26 @@
+[user]
+  email = 61425109+kgysu@users.noreply.github.com
+  name = kgysu
+
+[alias]
+  co = checkout
+  br = branch
+  ci = commit
+  st = status
+
+[pull]
+  rebase = true
+
+[commit]
+  verbose = true
+  #gpgSign = true
+
+[tag]
+  gpgSign = true
+
+[core]
+  autocrlf = true
+  editor = nvim
+
+[init]
+  defaultBranch = main

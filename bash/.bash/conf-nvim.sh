@@ -22,7 +22,7 @@ conf-nvim() {
 
 sync-nvim() {
   echo "sync back neovim conf to git"
-  
+
   if [[ ! -d "$HOME/nvim" ]]; then
     echo "clone personal nvim conf"
     git clone https://github.com/kgysu/nvim ~/nvim
