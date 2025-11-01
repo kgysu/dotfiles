@@ -6,6 +6,7 @@ set -e
 echo "Initializing machine.."
 
 dirs=(
+  "$HOME/.config"
   "$HOME/work/src"
   "$HOME/work/repos"
   "$HOME/work/tmp"
