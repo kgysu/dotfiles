@@ -26,10 +26,11 @@ done
 
 
 echo "cloning repo.."
-#git clone https://github.com/kgysu/dotfiles ~/.dotfiles
+git clone https://github.com/kgysu/dotfiles ~/.dotfiles
 
 
-DOTDIR="$HOME/.dotfiles"
+echo "cp scripts.."
+cp -rv ~/.dotfiles/scripts ~/.scripts
 
 
 
@@ -43,18 +44,42 @@ fi
 
 echo "Detected shell: $sh_type"
 
+
+setup_entrypoint() {
+  local shell_file="$HOME/$1"
+  echo "configure $shell_file"
+  cat >> "$shell_file" <<'EOF'
+
+# Source all scripts in ~/.scripts
+if [ -d "$HOME/.scripts" ]; then
+    for file in "$HOME/.scripts"/*.sh; do
+        [ -r "$file" ] && [ -f "$file" ] && source "$file"
+    done
+fi
+EOF
+}
+
+
 case "$sh_type" in
     /bin/bash)
-        exec bash "$DOTDIR/bash/install.bash" "$@"
+      setup_entrypoint .bashrc
         ;;
     /bin/zsh)
-          exec zsh "$DORDIR/zsh/install.zsh" "$@"
+      setup_entrypoint .zshrc
+        ;;
+    /usr/bin/zsh)
+      setup_entrypoint .zshrc
         ;;
     /bin/sh)
-        exec bash "$DOTDIR/bash/install.bash" "$@"
+      setup_entrypoint .bashrc
         ;;
     *)
         echo "Unsupported shell: $sh_type" >&2
         exit 1
         ;;
 esac
+
+
+echo "All done!"
+
+

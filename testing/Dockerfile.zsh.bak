@@ -1,0 +1,45 @@
+FROM debian:12
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# RUN apt update && apt install -y zsh \
+#     && chsh -s /usr/bin/zsh root   \
+#     && echo "export SHELL=/usr/bin/zsh" >> /etc/profile
+#
+# COPY .zshrc /root/.zshrc
+
+RUN apt update && apt install -y zsh git curl wget sudo fd-find fzf nodejs golang-go neovim pass wl-clipboard
+
+ARG USERNAME=appuser
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
+
+WORKDIR /home/$USERNAME
+
+RUN echo "export SHELL="/usr/bin/zsh"" >> .zshrc
+RUN chown appuser:appuser .zshrc
+
+# add scripts for testing
+RUN mkdir .dotfiles
+ADD . .dotfiles
+RUN chown -R appuser:appuser .dotfiles
+
+RUN mkdir -p .config/nvim
+RUN touch .config/nvim/test.md
+RUN chown -R appuser:appuser .config
+
+RUN mkdir -p .config/git
+RUN touch .config/git/test.md
+RUN chown -R appuser:appuser .config
+
+RUN chsh -s /usr/bin/zsh appuser
+
+USER $USERNAME
+
+SHELL ["/usr/bin/zsh", "-c"]
+CMD ["zsh", "-l"]

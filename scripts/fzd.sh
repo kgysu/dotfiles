@@ -21,6 +21,21 @@ fzd() {
 
 
 # bind Control-f key stroke
-bind -x '"\C-f": "fzd ~"'
-
-
+case "$SHELL" in
+    /bin/bash)
+       bind -x '"\C-f": "fzd ~"'
+        ;;
+    /bin/sh)
+       bind -x '"\C-f": "fzd ~"'
+        ;;
+    /bin/zsh)
+        bindkey -s '^F' 'fzd ~\n'
+        ;;
+    /usr/bin/zsh)
+        bindkey -s '^F' 'fzd ~\n'
+        ;;
+    *)
+        echo "Key bindings not supported in this shell: $SHELL"
+        return
+        ;;
+esac
