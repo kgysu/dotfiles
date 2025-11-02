@@ -19,7 +19,7 @@
   gpgSign = true
 
 [core]
-  autocrlf = true
+  autocrlf = input
   editor = nvim
 
 [init]
