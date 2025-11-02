@@ -25,10 +25,10 @@ for dir in "${dirs[@]}"; do
   fi
 done
 
-
-echo "cloning repo.."
-git clone https://github.com/kgysu/dotfiles ~/.dotfiles
-
+if [[ ! -d "$HOME/.dotfiles" ]]; then
+  echo "cloning repo.."
+  git clone https://github.com/kgysu/dotfiles ~/.dotfiles
+fi
 
 echo "cp scripts.."
 cp -rv ~/.dotfiles/scripts ~/.scripts

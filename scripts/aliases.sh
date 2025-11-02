@@ -4,7 +4,10 @@ alias ll='ls -lah'
 alias la='ls -lah'
 
 alias f='fzf'
-alias fd='fdfind'
+
+if ! command -v fd >/dev/null 2>&1; then
+  alias fd='fdfind'
+fi
 
 # git
 alias gs='git status'
